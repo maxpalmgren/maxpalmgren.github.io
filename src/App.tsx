@@ -1,19 +1,10 @@
-import { useState } from "react";
-import Onboard from "./wizard/Onboard";
-
-const rulesetList = ["EU Ruleset"];
+import ScreenSelector from "./components/ScreenSelector";
 
 function App() {
-  const [selectedRuleset, setSelectedruleset] = useState<string>("EU Ruleset");
-
   return (
     <div className="bg-slate-800 text-white w-screen h-screen">
-      <div className="flex justify-center">
-        <Onboard
-          rulesetList={rulesetList}
-          selectedRuleset={selectedRuleset}
-          setSelectedruleset={() => setSelectedruleset}
-        ></Onboard>
+      <div className="flex justify-center items-center h-screen">
+        <ScreenSelector></ScreenSelector>
       </div>
     </div>
   );

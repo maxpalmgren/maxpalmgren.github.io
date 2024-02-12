@@ -1,0 +1,10 @@
+[
+  {
+    "title": "Battlefield",
+    "image": "src/assets/stage-images/battlefield.webp"
+  },
+  {
+    "title": "Final Destination",
+    "image": "src/assets/stage-images/final_destination.webp"
+  }
+]
