@@ -19,6 +19,7 @@ const ScreenSelector: FC = () => {
   if (screen === "onBoard")
     return (
       <div>
+        <h2>TEST</h2>
         <Onboard
           rulesetList={rulesetList}
           selectedRuleset={selectedRuleset}
