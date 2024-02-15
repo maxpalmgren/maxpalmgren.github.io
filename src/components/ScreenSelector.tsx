@@ -1,8 +1,8 @@
 import { FC, useState } from "react";
 import Onboard from "../wizard/Onboard";
-import StageCard from "./StageCard";
 import StageData from "../assets/stages/stages.json";
 import { Stage } from "../Types/Stage";
+import GameOne from "./GameOne";
 
 const stages = StageData as Stage[];
 const rulesetList = ["EU Ruleset"];
@@ -35,9 +35,8 @@ const ScreenSelector: FC = () => {
     );
   if (screen === "game1")
     return (
-      <div className="flex gap-2">
-        <StageCard stage={stages[1]} />
-        <StageCard stage={stages[0]} />
+      <div className="px-2">
+        <GameOne playerOne={playerOne} playerTwo={playerTwo} />
       </div>
     );
 };
