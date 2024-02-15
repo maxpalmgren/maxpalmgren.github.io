@@ -1,10 +1,8 @@
 import { FC, useState } from "react";
 import Onboard from "../wizard/Onboard";
-import StageData from "../assets/stages/stages.json";
-import { Stage } from "../Types/Stage";
 import GameOne from "./GameOne";
 
-const stages = StageData as Stage[];
+//const stages = StageData as Stage[];
 const rulesetList = ["EU Ruleset"];
 
 const ScreenSelector: FC = () => {
