@@ -1,38 +1,38 @@
 [
   {
     "title": "Battlefield",
-    "image": "/stage-images/battlefield.webp"
+    "image": "/battlefield.webp"
   },
   {
     "title": "Final Destination",
-    "image": "/stage-images/final_destination.webp"
+    "image": "/final_destination.webp"
   },
   {
     "title": "Small Battlefield",
-    "image": "/stage-images/small_battlefield.webp"
+    "image": "/small_battlefield.webp"
   },
   {
     "title": "Hollow Bastion",
-    "image": "/stage-images/hollow_bastion.webp"
+    "image": "/hollow_bastion.webp"
   },
   {
     "title": "Kalos Pokemon League",
-    "image": "/stage-images/kalos_pokemon_league.webp"
+    "image": "/kalos_pokemon_league.webp"
   },
   {
     "title": "Pokemon Stadium 2",
-    "image": "/stage-images/pokemon_stadium_2.webp"
+    "image": "/pokemon_stadium_2.webp"
   },
   {
     "title": "Smashville",
-    "image": "/stage-images/smashville.webp"
+    "image": "/smashville.webp"
   },
   {
     "title": "Town & City",
-    "image": "/stage-images/town_and_city.webp"
+    "image": "/town_and_city.webp"
   },
   {
     "title": "Yoshi's Story",
-    "image": "/stage-images/yoshis_story.webp"
+    "image": "/yoshis_story.webp"
   }
 ]
