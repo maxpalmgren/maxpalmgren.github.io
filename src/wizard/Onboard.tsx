@@ -32,7 +32,7 @@ const Onboard: FC<Props> = ({
   };
 
   return (
-    <div className="flex flex-col justify-center items-center gap-2">
+    <div className="flex flex-col justify-center items-center gap-2 bg-slate-800 h-screen">
       <div>
         <h2 className="text-4xl">Smash Stage Picker</h2>
       </div>
