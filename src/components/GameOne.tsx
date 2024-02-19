@@ -34,11 +34,11 @@ const GameOne: FC<Props> = ({ playerOne, playerTwo }) => {
   }), [randomizeFirstBanner]
 
 
-  const findBannedStage = (stageTitle: string) => {
+  /* const findBannedStage = (stageTitle: string) => {
     if (bannedStages.find(x => x == stageTitle)) {
       return true
     } else return false
-  }
+  } */
 
   const handlePicker = () => {
     if (bannedStages.length < 3) {
