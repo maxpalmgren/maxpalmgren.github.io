@@ -57,7 +57,7 @@ const GameOne: FC<Props> = ({ playerOne, playerTwo }) => {
   }
 
   return (
-    <div className="relative h-screen">
+    <div className="relative">
       <div className="flex justify-center sticky top-0 z-20 p-4 bg-slate-800 shadow-lg">
         {handlePicker()}
       </div>
