@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from "react";
 import StageCard from "./StageCard";
 import StageData from "../assets/stages/stages.json";
 import { Stage } from "../Types/Stage";
+import MatchDialog from "./MatchDialog";
 
 type Props = {
   playerOne: string;
@@ -34,12 +35,6 @@ const GameOne: FC<Props> = ({ playerOne, playerTwo }) => {
   }),
     [randomizeFirstBanner];
 
-  /* const findBannedStage = (stageTitle: string) => {
-    if (bannedStages.find(x => x == stageTitle)) {
-      return true
-    } else return false
-  } */
-
   const handlePicker = () => {
     if (bannedStages.length < 3) {
       return (
@@ -69,6 +64,12 @@ const GameOne: FC<Props> = ({ playerOne, playerTwo }) => {
 
   return (
     <div className="relative">
+      <MatchDialog
+        playerOne={playerOne}
+        playerTwo={playerTwo}
+        stage={stages[0]}
+      />
+      <h1 className="text-3xl flex justify-center">0 - 0</h1>
       <div className="flex justify-center sticky top-0 z-20 p-4 bg-slate-800 shadow-lg">
         {handlePicker()}
       </div>
