@@ -9,30 +9,30 @@ type Props = {
 };
 
 const GameOne: FC<Props> = ({ playerOne, playerTwo }) => {
-  const [bannedStages, setBannedStages] = useState<string[]>([])
-  const [firstPicker, setFirstPicker] = useState<string>("")
-  const [secondPicker, setSecondPicker] = useState<string>("")
-  const [mode, setMode] = useState<"ban" | "pick">("ban")
+  const [bannedStages, setBannedStages] = useState<string[]>([]);
+  const [firstPicker, setFirstPicker] = useState<string>("");
+  const [secondPicker, setSecondPicker] = useState<string>("");
+  const [mode, setMode] = useState<"ban" | "pick">("ban");
 
-  const stages = StageData as Stage[]
+  const stages = StageData as Stage[];
 
   const randomizeFirstBanner = () => {
-    if (firstPicker !== "") return
-    if (secondPicker !== "") return
-    const random = Math.random()
+    if (firstPicker !== "") return;
+    if (secondPicker !== "") return;
+    const random = Math.random();
     if (random > 0.5) {
-      setFirstPicker(playerOne)
-      setSecondPicker(playerTwo)
+      setFirstPicker(playerOne);
+      setSecondPicker(playerTwo);
     } else {
-      setFirstPicker(playerTwo)
-      setSecondPicker(playerOne)
+      setFirstPicker(playerTwo);
+      setSecondPicker(playerOne);
     }
   };
 
   useEffect(() => {
-    randomizeFirstBanner()
-  }), [randomizeFirstBanner]
-
+    randomizeFirstBanner();
+  }),
+    [randomizeFirstBanner];
 
   /* const findBannedStage = (stageTitle: string) => {
     if (bannedStages.find(x => x == stageTitle)) {
@@ -42,19 +42,30 @@ const GameOne: FC<Props> = ({ playerOne, playerTwo }) => {
 
   const handlePicker = () => {
     if (bannedStages.length < 3) {
-      return <div><span className="font-bold">{firstPicker}</span> bans 3 stages</div>
+      return (
+        <div>
+          <span className="font-bold">{firstPicker}</span> bans 3 stages
+        </div>
+      );
     }
     if (bannedStages.length < 7) {
-      return <div><span className="font-bold">{secondPicker}</span> bans 4 stages</div>
+      return (
+        <div>
+          <span className="font-bold">{secondPicker}</span> bans 4 stages
+        </div>
+      );
     }
     if (bannedStages.length > 6) {
       if (mode === "ban") {
-        setMode("pick")
+        setMode("pick");
       }
-      return (<div><span className="font-bold">{firstPicker}</span> select 1 stage</div>)
-    }
-    else return ""
-  }
+      return (
+        <div>
+          <span className="font-bold">{firstPicker}</span> select 1 stage
+        </div>
+      );
+    } else return "";
+  };
 
   return (
     <div className="relative">
@@ -63,7 +74,13 @@ const GameOne: FC<Props> = ({ playerOne, playerTwo }) => {
       </div>
       <div className="flex gap-2 flex-wrap justify-center mt-2">
         {stages.map((stage, i) => (
-          <StageCard stage={stage} setBannedStages={(v) => setBannedStages(v)} mode={mode} key={`${stage}-${i}`} />
+          <StageCard
+            bannedStages={bannedStages}
+            stage={stage}
+            setBannedStages={(v) => setBannedStages(v)}
+            mode={mode}
+            key={`${stage}-${i}`}
+          />
         ))}
       </div>
     </div>

@@ -1,5 +1,12 @@
-import { Listbox } from "@headlessui/react";
 import { FC } from "react";
+import { Button } from "./ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 
 type Props = {
   rulesetList: string[];
@@ -13,22 +20,23 @@ const RulesetDropdown: FC<Props> = ({
   setSelectedruleset,
 }) => {
   return (
-    <Listbox value={selectedRuleset} onChange={setSelectedruleset}>
-      <Listbox.Button className="border w-max py-1 px-1 rounded-md hover:bg-slate-600">
-        {selectedRuleset}
-      </Listbox.Button>
-      <Listbox.Options className="px-1 border rounded-md py-1 absolute bg-slate-800">
-        {rulesetList.map((ruleset, i) => (
-          <Listbox.Option
-            key={`${ruleset}-${i}`}
-            value={ruleset}
-            className="hover:bg-slate-600 cursor-pointer"
-          >
-            {ruleset}
-          </Listbox.Option>
-        ))}
-      </Listbox.Options>
-    </Listbox>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline">{selectedRuleset}</Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuRadioGroup
+          value={selectedRuleset}
+          onValueChange={setSelectedruleset}
+        >
+          {rulesetList.map((ruleset, i) => (
+            <DropdownMenuRadioItem value={ruleset} key={i}>
+              {ruleset}
+            </DropdownMenuRadioItem>
+          ))}
+        </DropdownMenuRadioGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
 

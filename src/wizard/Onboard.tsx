@@ -1,6 +1,7 @@
 import { FC } from "react";
 import RulesetDropdown from "../components/RulesetDropdown";
 import ModeDropdown from "../components/ModeDropdown";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   rulesetList: string[];
@@ -37,14 +38,14 @@ const Onboard: FC<Props> = ({
         <h2 className="text-4xl">Smash Stage Picker</h2>
       </div>
       <div className="flex gap-1">
-        <div className="relative">
+        <div className="relative text-black">
           <RulesetDropdown
             rulesetList={rulesetList}
             selectedRuleset={selectedRuleset}
             setSelectedruleset={setSelectedruleset}
           ></RulesetDropdown>
         </div>
-        <div className="relative">
+        <div className="relative text-black">
           <ModeDropdown mode={mode} setMode={(e) => setMode(e)}></ModeDropdown>
         </div>
       </div>
@@ -62,12 +63,7 @@ const Onboard: FC<Props> = ({
           onChange={(e) => setPlayerTwo(e.target.value)}
         />
       </div>
-      <button
-        onClick={onButtonClick}
-        className="bg-green-400 hover:bg-green-600 rounded-md p-2 w-2/3"
-      >
-        GO!
-      </button>
+      <Button onClick={onButtonClick}>GO!</Button>
     </div>
   );
 };

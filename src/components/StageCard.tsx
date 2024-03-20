@@ -4,32 +4,49 @@ import classNames from "classnames";
 
 type Props = {
   stage: Stage;
-  setBannedStages: (title: React.SetStateAction<string[]>) => void
-  mode: "ban" | "pick"
+  bannedStages: string[];
+  setBannedStages: (title: React.SetStateAction<string[]>) => void;
+  mode: "ban" | "pick";
 };
 
-const StageCard: FC<Props> = ({ stage, setBannedStages, mode
+const StageCard: FC<Props> = ({
+  stage,
+  setBannedStages,
+  mode,
+  bannedStages,
 }) => {
-  const [isBanned, setIsBanned] = useState<boolean>()
-  const [isPicked, setIsPicked] = useState<boolean>(false)
+  const [isBanned, setIsBanned] = useState<boolean>();
+  const [isPicked, setIsPicked] = useState<boolean>(false);
 
   const handleBanStage = () => {
     if (mode === "ban") {
-      setBannedStages((prev) => [...prev, stage.title])
-      setIsBanned(true)
+      if (bannedStages.some((x) => x === stage.title)) return;
+      setBannedStages((prev) => [...prev, stage.title]);
+      setIsBanned(true);
     }
     if (mode === "pick") {
-      setIsPicked(true)
+      setIsPicked(true);
     }
-  }
+  };
 
   return (
-    <button className={classNames(mode == "pick" ? "hover:ring-green-500 hover:ring" : "ring-red-500 hover:ring",
-      isBanned ? "hover:ring-0" : "",
-      isPicked ? "ring ring-green-500" : "", "hover:cursor-pointer")} onClick={handleBanStage}>
+    <button
+      className={classNames(
+        mode == "pick"
+          ? "hover:ring-green-500 hover:ring"
+          : "ring-red-500 hover:ring",
+        isBanned ? "hover:ring-0" : "",
+        isPicked ? "ring ring-green-500" : "",
+        "hover:cursor-pointer"
+      )}
+      onClick={handleBanStage}
+    >
       <div className="md:w-56 w-44 rounded shadow-lg hover:shadow-2xl">
-        <img className={classNames("w-full z-0",
-          isBanned ? "grayscale" : "")} src={stage.image} alt={stage.title}></img>
+        <img
+          className={classNames("w-full z-0", isBanned ? "grayscale" : "")}
+          src={stage.image}
+          alt={stage.title}
+        ></img>
         <div className="p-4 bg-zinc-900 flex justify-center">
           <div className="font-bold text-xs md:text-sm">{stage.title}</div>
         </div>
