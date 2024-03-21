@@ -3,19 +3,27 @@ import StageCard from "./StageCard";
 import StageData from "../assets/stages/stages.json";
 import { Stage } from "../Types/Stage";
 import MatchDialog from "./MatchDialog";
+import { log } from "console";
 
 type Props = {
-  playerOne: string;
-  playerTwo: string;
+  playerOne: string
+  playerTwo: string
+  playerOneScore: number
+  setPlayerOneScore: (point: number) => void
+  playerTwoScore: number
+  setPlayerTwoScore: (point: number) => void
+  setScreen: (screen: "game2") => void
 };
 
-const GameOne: FC<Props> = ({ playerOne, playerTwo }) => {
+const GameOne: FC<Props> = ({ playerOne, playerTwo, playerOneScore, playerTwoScore, setScreen, setPlayerOneScore, setPlayerTwoScore }) => {
   const [bannedStages, setBannedStages] = useState<string[]>([]);
   const [firstPicker, setFirstPicker] = useState<string>("");
   const [secondPicker, setSecondPicker] = useState<string>("");
   const [mode, setMode] = useState<"ban" | "pick">("ban");
-
   const stages = StageData as Stage[];
+  const [pickedStage, setPickedStage] = useState<Stage>(stages[0])
+  const [isModalOpen, setIsOpenModal] = useState<boolean>(false)
+
 
   const randomizeFirstBanner = () => {
     if (firstPicker !== "") return;
@@ -62,14 +70,34 @@ const GameOne: FC<Props> = ({ playerOne, playerTwo }) => {
     } else return "";
   };
 
+  const handleWin = (winner: string) => {
+    if (winner === playerOne) {
+      setPlayerOneScore(1)
+      setIsOpenModal(false)
+      setScreen("game2")
+    }
+    if (winner === playerTwo) {
+      setPlayerTwoScore(1)
+      setIsOpenModal(false)
+      setScreen("game2")
+    }
+  }
+
+  const pickStage = (stage: Stage) => {
+    setPickedStage(stage)
+    setIsOpenModal(true)
+  }
+
   return (
     <div className="relative">
       <MatchDialog
         playerOne={playerOne}
         playerTwo={playerTwo}
-        stage={stages[0]}
+        stage={pickedStage}
+        handleWin={handleWin}
+        isOpen={isModalOpen}
       />
-      <h1 className="text-3xl flex justify-center">0 - 0</h1>
+      <h1 className="text-3xl flex justify-center">{playerOneScore} - {playerTwoScore}</h1>
       <div className="flex justify-center sticky top-0 z-20 p-4 bg-slate-800 shadow-lg">
         {handlePicker()}
       </div>
@@ -81,6 +109,7 @@ const GameOne: FC<Props> = ({ playerOne, playerTwo }) => {
             setBannedStages={(v) => setBannedStages(v)}
             mode={mode}
             key={`${stage}-${i}`}
+            pickStage={pickStage}
           />
         ))}
       </div>

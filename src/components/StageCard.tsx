@@ -7,6 +7,7 @@ type Props = {
   bannedStages: string[];
   setBannedStages: (title: React.SetStateAction<string[]>) => void;
   mode: "ban" | "pick";
+  pickStage: (stage: Stage) => void
 };
 
 const StageCard: FC<Props> = ({
@@ -14,6 +15,7 @@ const StageCard: FC<Props> = ({
   setBannedStages,
   mode,
   bannedStages,
+  pickStage
 }) => {
   const [isBanned, setIsBanned] = useState<boolean>();
   const [isPicked, setIsPicked] = useState<boolean>(false);
@@ -26,6 +28,7 @@ const StageCard: FC<Props> = ({
     }
     if (mode === "pick") {
       setIsPicked(true);
+      pickStage(stage)
     }
   };
 

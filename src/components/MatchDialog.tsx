@@ -1,26 +1,27 @@
 import { FC } from "react";
 import { Stage } from "../Types/Stage";
 import { Button } from "./ui/button";
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "./ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "./ui/dialog";
 
 type Props = {
   playerOne: string;
   playerTwo: string;
-  stage: Stage;
+  stage: Stage
+  handleWin: (winner: string) => void
+  isOpen: boolean
 };
 
-const MatchDialog: FC<Props> = ({ playerOne, playerTwo, stage }) => {
+const MatchDialog: FC<Props> = ({ playerOne, playerTwo, stage, handleWin, isOpen }) => {
   return (
-    <Dialog>
-      <DialogTrigger>s</DialogTrigger>
+    <Dialog open={isOpen}>
       <DialogContent>
         <DialogTitle className="flex justify-center items-center">
           {stage.title}
         </DialogTitle>
         <img src={stage.image} alt="" />
         <DialogTitle className="flex justify-center">Who won?</DialogTitle>
-        <Button>{playerOne}</Button>
-        <Button>{playerTwo}</Button>
+        <Button onClick={() => handleWin(playerOne)}>{playerOne}</Button>
+        <Button onClick={() => handleWin(playerTwo)}>{playerTwo}</Button>
       </DialogContent>
     </Dialog>
   );
