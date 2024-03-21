@@ -96,7 +96,7 @@ const GameOne: FC<Props> = ({ playerOne, playerTwo, playerOneScore, playerTwoSco
         handleWin={handleWin}
         isOpen={isModalOpen}
       />
-      <h1 className="text-3xl flex justify-center">{playerOneScore} - {playerTwoScore}</h1>
+      <div className="flex justify-center items-center"><span>{`${playerOne}`}</span> <span className="font-bold text-2xl">{playerOneScore} - {playerTwoScore}</span> <span> {playerTwo}</span></div>
       <div className="flex justify-center sticky top-0 z-20 p-4 bg-slate-800 shadow-lg">
         {handlePicker()}
       </div>
