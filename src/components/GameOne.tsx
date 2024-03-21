@@ -3,7 +3,6 @@ import StageCard from "./StageCard";
 import StageData from "../assets/stages/stages.json";
 import { Stage } from "../Types/Stage";
 import MatchDialog from "./MatchDialog";
-import { log } from "console";
 
 type Props = {
   playerOne: string
