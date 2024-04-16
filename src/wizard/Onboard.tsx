@@ -61,6 +61,18 @@ const Onboard: FC<Props> = ({
         />
       </div>
       <Button onClick={onButtonClick}>GO!</Button>
+      <div className="m:w-2/3 w-full px-2">
+        <p className="font-semibold">EU Ruleset</p>
+        <p>
+          In game 1, a randomized player bans 3 stages, then the other player
+          bans 4 stages, and then the first player chooses from the remaining
+          two.
+        </p>
+        <p>
+          In subsequent games, the winner of the previous game will ban 3
+          stages, loser picks from the remaining.
+        </p>
+      </div>
     </div>
   );
 };

@@ -5,24 +5,31 @@ import { Stage } from "../Types/Stage";
 import MatchDialog from "./MatchDialog";
 
 type Props = {
-  playerOne: string
-  playerTwo: string
-  playerOneScore: number
-  setPlayerOneScore: (point: number) => void
-  playerTwoScore: number
-  setPlayerTwoScore: (point: number) => void
-  setScreen: (screen: "game2") => void
+  playerOne: string;
+  playerTwo: string;
+  playerOneScore: number;
+  setPlayerOneScore: (point: number) => void;
+  playerTwoScore: number;
+  setPlayerTwoScore: (point: number) => void;
+  setScreen: (screen: "gameloop") => void;
 };
 
-const GameOne: FC<Props> = ({ playerOne, playerTwo, playerOneScore, playerTwoScore, setScreen, setPlayerOneScore, setPlayerTwoScore }) => {
+const GameOne: FC<Props> = ({
+  playerOne,
+  playerTwo,
+  playerOneScore,
+  playerTwoScore,
+  setScreen,
+  setPlayerOneScore,
+  setPlayerTwoScore,
+}) => {
   const [bannedStages, setBannedStages] = useState<string[]>([]);
   const [firstPicker, setFirstPicker] = useState<string>("");
   const [secondPicker, setSecondPicker] = useState<string>("");
   const [mode, setMode] = useState<"ban" | "pick">("ban");
   const stages = StageData as Stage[];
-  const [pickedStage, setPickedStage] = useState<Stage>(stages[0])
-  const [isModalOpen, setIsOpenModal] = useState<boolean>(false)
-
+  const [pickedStage, setPickedStage] = useState<Stage>(stages[0]);
+  const [isModalOpen, setIsOpenModal] = useState<boolean>(false);
 
   const randomizeFirstBanner = () => {
     if (firstPicker !== "") return;
@@ -71,21 +78,22 @@ const GameOne: FC<Props> = ({ playerOne, playerTwo, playerOneScore, playerTwoSco
 
   const handleWin = (winner: string) => {
     if (winner === playerOne) {
-      setPlayerOneScore(1)
-      setIsOpenModal(false)
-      setScreen("game2")
+      setPlayerOneScore(1);
+      setIsOpenModal(false);
+      setScreen("gameloop");
     }
     if (winner === playerTwo) {
-      setPlayerTwoScore(1)
-      setIsOpenModal(false)
-      setScreen("game2")
+      setPlayerTwoScore(1);
+      setIsOpenModal(false);
+      setScreen("gameloop");
     }
-  }
+  };
 
   const pickStage = (stage: Stage) => {
-    setPickedStage(stage)
-    setIsOpenModal(true)
-  }
+    if (bannedStages.some((x) => x === stage.title)) return;
+    setPickedStage(stage);
+    setIsOpenModal(true);
+  };
 
   return (
     <div className="relative">
@@ -96,7 +104,13 @@ const GameOne: FC<Props> = ({ playerOne, playerTwo, playerOneScore, playerTwoSco
         handleWin={handleWin}
         isOpen={isModalOpen}
       />
-      <div className="flex justify-center items-center"><span>{`${playerOne}`}</span> <span className="font-bold text-2xl">{playerOneScore} - {playerTwoScore}</span> <span> {playerTwo}</span></div>
+      <div className="flex justify-center items-center">
+        <span className="mr-4">{`${playerOne}`}</span>{" "}
+        <span className="font-bold text-2xl">
+          {playerOneScore} - {playerTwoScore}
+        </span>{" "}
+        <span className="ml-4">{playerTwo}</span>
+      </div>
       <div className="flex justify-center sticky top-0 z-20 p-4 bg-slate-800 shadow-lg">
         {handlePicker()}
       </div>

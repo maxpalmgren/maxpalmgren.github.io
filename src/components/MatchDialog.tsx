@@ -6,19 +6,25 @@ import { Dialog, DialogContent, DialogTitle } from "./ui/dialog";
 type Props = {
   playerOne: string;
   playerTwo: string;
-  stage: Stage
-  handleWin: (winner: string) => void
-  isOpen: boolean
+  stage: Stage | undefined;
+  handleWin: (winner: string) => void;
+  isOpen: boolean;
 };
 
-const MatchDialog: FC<Props> = ({ playerOne, playerTwo, stage, handleWin, isOpen }) => {
+const MatchDialog: FC<Props> = ({
+  playerOne,
+  playerTwo,
+  stage,
+  handleWin,
+  isOpen,
+}) => {
   return (
     <Dialog open={isOpen}>
       <DialogContent>
         <DialogTitle className="flex justify-center items-center">
-          {stage.title}
+          {stage?.title}
         </DialogTitle>
-        <img src={stage.image} alt="" />
+        <img src={stage?.image} alt="" />
         <DialogTitle className="flex justify-center">Who won?</DialogTitle>
         <Button onClick={() => handleWin(playerOne)}>{playerOne}</Button>
         <Button onClick={() => handleWin(playerTwo)}>{playerTwo}</Button>
