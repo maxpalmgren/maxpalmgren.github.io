@@ -20,7 +20,7 @@ const MatchDialog: FC<Props> = ({
 }) => {
   return (
     <Dialog open={isOpen}>
-      <DialogContent>
+      <DialogContent className="w-11/12 sm:max-w-md overflow-y-scroll max-h-screen">
         <DialogTitle className="flex justify-center items-center">
           {stage?.title}
         </DialogTitle>

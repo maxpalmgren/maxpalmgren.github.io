@@ -1,8 +1,9 @@
 import { FC, useEffect, useState } from "react";
-import StageCard from "./StageCard";
-import StageData from "../assets/stages/stages.json";
 import { Stage } from "../Types/Stage";
+import StageData from "../assets/stages/stages.json";
 import MatchDialog from "./MatchDialog";
+import StageCard from "./StageCard";
+//import { useToast } from "./ui/use-toast";
 
 type Props = {
   playerOne: string;
@@ -30,10 +31,9 @@ const GameOne: FC<Props> = ({
   const stages = StageData as Stage[];
   const [pickedStage, setPickedStage] = useState<Stage>(stages[0]);
   const [isModalOpen, setIsOpenModal] = useState<boolean>(false);
+  //const { toast } = useToast();
 
   const randomizeFirstBanner = () => {
-    if (firstPicker !== "") return;
-    if (secondPicker !== "") return;
     const random = Math.random();
     if (random > 0.5) {
       setFirstPicker(playerOne);
@@ -51,6 +51,7 @@ const GameOne: FC<Props> = ({
 
   const handlePicker = () => {
     if (bannedStages.length < 3) {
+      //toast({ title: "skubidu" });
       return (
         <div>
           <span className="font-bold">{firstPicker}</span> bans 3 stages

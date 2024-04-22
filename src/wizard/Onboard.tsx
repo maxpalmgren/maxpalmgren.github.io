@@ -1,8 +1,8 @@
-import { FC } from "react";
-import RulesetDropdown from "../components/RulesetDropdown";
-import ModeDropdown from "../components/ModeDropdown";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { FC } from "react";
+import ModeDropdown from "../components/ModeDropdown";
+import RulesetDropdown from "../components/RulesetDropdown";
 
 type Props = {
   rulesetList: string[];
