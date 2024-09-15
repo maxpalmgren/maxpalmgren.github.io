@@ -45,7 +45,7 @@ const StageCard: FC<Props> = ({
       )}
       onClick={handleBanStage}
     >
-      <div className="md:w-56 w-44 rounded shadow-lg hover:shadow-2xl">
+      <div className="md:w-56 w-40 rounded shadow-lg hover:shadow-2xl">
         <img
           className={classNames("w-full z-0", isBanned ? "grayscale" : "")}
           src={stage.image}

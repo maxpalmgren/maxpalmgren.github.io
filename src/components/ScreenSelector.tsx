@@ -37,7 +37,7 @@ const ScreenSelector: FC = () => {
     );
   if (screen === "game1")
     return (
-      <div className="px-2 md:w-2/3">
+      <div className="px-2">
         <GameOne
           playerOne={playerOne}
           playerTwo={playerTwo}

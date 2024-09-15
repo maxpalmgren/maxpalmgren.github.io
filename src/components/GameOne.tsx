@@ -3,7 +3,6 @@ import { Stage } from "../Types/Stage";
 import StageData from "../assets/stages/stages.json";
 import MatchDialog from "./MatchDialog";
 import StageCard from "./StageCard";
-//import { useToast } from "./ui/use-toast";
 
 type Props = {
   playerOne: string;
@@ -33,21 +32,19 @@ const GameOne: FC<Props> = ({
   const [isModalOpen, setIsOpenModal] = useState<boolean>(false);
   //const { toast } = useToast();
 
-  const randomizeFirstBanner = () => {
-    const random = Math.random();
-    if (random > 0.5) {
-      setFirstPicker(playerOne);
-      setSecondPicker(playerTwo);
-    } else {
-      setFirstPicker(playerTwo);
-      setSecondPicker(playerOne);
-    }
-  };
-
   useEffect(() => {
+    const randomizeFirstBanner = () => {
+      const random = Math.random();
+      if (random > 0.5) {
+        setFirstPicker(playerOne);
+        setSecondPicker(playerTwo);
+      } else {
+        setFirstPicker(playerTwo);
+        setSecondPicker(playerOne);
+      }
+    };
     randomizeFirstBanner();
-  }),
-    [randomizeFirstBanner];
+  }, [playerOne, playerTwo]);
 
   const handlePicker = () => {
     if (bannedStages.length < 3) {
@@ -115,7 +112,7 @@ const GameOne: FC<Props> = ({
       <div className="flex justify-center sticky top-0 z-20 p-4 bg-slate-800 shadow-lg">
         {handlePicker()}
       </div>
-      <div className="flex gap-2 flex-wrap justify-center mt-2">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-2">
         {stages.map((stage, i) => (
           <StageCard
             bannedStages={bannedStages}
