@@ -14,7 +14,7 @@ const GameLoop: FC = () => {
     setPlayerOneScore,
     setPlayerTwoScore,
     setScreen,
-    bestOfMode,
+    mode: bestOfMode,
     setWinner,
   } = useContext(GameContext);
   const stages = StageData as Stage[];
@@ -36,6 +36,41 @@ const GameLoop: FC = () => {
       setLastLoser(playerOne);
     }
   }, []);
+
+  useEffect(() => {
+    if (lastWinner === playerOne) {
+      if (
+        (playerOneScore === 2 || playerTwoScore === 2) &&
+        bestOfMode === "Bo3"
+      ) {
+        setWinner(playerOne);
+        setScreen("end");
+      }
+      if (
+        (playerOneScore === 3 || playerTwoScore === 3) &&
+        bestOfMode === "Bo5"
+      ) {
+        setWinner(playerOne);
+        setScreen("end");
+      }
+    }
+    if (lastWinner === playerTwo) {
+      if (
+        (playerOneScore === 2 || playerTwoScore === 2) &&
+        bestOfMode === "Bo3"
+      ) {
+        setWinner(playerTwo);
+        setScreen("end");
+      }
+      if (
+        (playerOneScore === 3 || playerTwoScore === 3) &&
+        bestOfMode === "Bo5"
+      ) {
+        setWinner(playerTwo);
+        setScreen("end");
+      }
+    }
+  }, [playerOneScore, playerTwoScore]);
 
   const handlePicker = () => {
     if (bannedStages.length < 3) {
@@ -63,50 +98,23 @@ const GameLoop: FC = () => {
 
   const handleWin = (winner: string) => {
     if (winner === playerOne) {
-      setPlayerOneScore(playerOneScore + 1);
+      setPlayerOneScore((prev) => prev + 1);
+      console.log(playerOneScore);
       setLastWinner(playerOne);
       setLastLoser(playerTwo);
       setFlipSwitch((x) => x + 1);
       resetBannedStages();
       setMode("ban");
       setIsOpenModal(false);
-      if (
-        (playerOneScore === 2 || playerTwoScore === 2) &&
-        bestOfMode === "Bo3"
-      ) {
-        setWinner(playerOne);
-        setScreen("end");
-      }
-      if (
-        (playerOneScore === 3 || playerTwoScore === 3) &&
-        bestOfMode === "Bo5"
-      ) {
-        setWinner(playerOne);
-        setScreen("end");
-      }
     }
     if (winner === playerTwo) {
-      setPlayerTwoScore(playerTwoScore + 1);
+      setPlayerTwoScore((prev) => prev + 1);
       setLastWinner(playerTwo);
       setLastLoser(playerOne);
       setFlipSwitch((x) => x + 1);
       resetBannedStages();
       setMode("ban");
       setIsOpenModal(false);
-      if (
-        (playerOneScore === 2 || playerTwoScore === 2) &&
-        bestOfMode === "Bo3"
-      ) {
-        setWinner(playerTwo);
-        setScreen("end");
-      }
-      if (
-        (playerOneScore === 3 || playerTwoScore === 3) &&
-        bestOfMode === "Bo5"
-      ) {
-        setWinner(playerTwo);
-        setScreen("end");
-      }
     }
   };
   const pickStage = (stage: Stage) => {

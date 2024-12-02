@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 import { Button } from "./ui/button";
 import {
   DropdownMenu,
@@ -7,18 +7,14 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { GameContext } from "@/context/GameContext";
 
 type Props = {
   rulesetList: string[];
-  selectedRuleset: string;
-  setSelectedruleset: () => void;
 };
 
-const RulesetDropdown: FC<Props> = ({
-  selectedRuleset,
-  rulesetList,
-  setSelectedruleset,
-}) => {
+const RulesetDropdown: FC<Props> = ({ rulesetList }) => {
+  const { setSelectedruleset, selectedRuleset } = useContext(GameContext);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

@@ -11,8 +11,6 @@ type Props = {
 
 const Onboard: FC<Props> = ({ rulesetList }) => {
   const {
-    selectedRuleset,
-    setSelectedruleset,
     playerOne,
     setPlayerOne,
     playerTwo,
@@ -32,11 +30,7 @@ const Onboard: FC<Props> = ({ rulesetList }) => {
       </div>
       <div className="flex gap-1">
         <div className="relative text-black">
-          <RulesetDropdown
-            rulesetList={rulesetList}
-            selectedRuleset={selectedRuleset}
-            setSelectedruleset={setSelectedruleset}
-          ></RulesetDropdown>
+          <RulesetDropdown rulesetList={rulesetList}></RulesetDropdown>
         </div>
         <div className="relative text-black">
           <ModeDropdown mode={mode} setMode={(e) => setMode(e)}></ModeDropdown>

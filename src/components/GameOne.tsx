@@ -14,6 +14,7 @@ const GameOne: FC = ({}) => {
     setScreen,
     setPlayerOneScore,
     setPlayerTwoScore,
+    mode: bestOfMode,
   } = useContext(GameContext);
   const [bannedStages, setBannedStages] = useState<string[]>([]);
   const [firstPicker, setFirstPicker] = useState<string>("");

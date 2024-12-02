@@ -10,10 +10,12 @@ const GameProvider = ({ children }: PropsWithChildren) => {
   const [playerOneScore, setPlayerOneScore] = useState<number>(0);
   const [playerTwoScore, setPlayerTwoScore] = useState<number>(0);
   const [winner, setWinner] = useState<string>("");
-  const [mode, setMode] = useState("Bo5");
+  const [mode, setMode] = useState<"Bo3" | "Bo5">("Bo5");
   const [screen, setScreen] = useState<
     "onBoard" | "game1" | "gameloop" | "end"
   >("onBoard");
+
+  if (GameContext === undefined) return null;
 
   return (
     <GameContext.Provider
