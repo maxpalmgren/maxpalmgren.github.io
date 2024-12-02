@@ -3,7 +3,7 @@ import { Stage } from "../Types/Stage";
 import StageData from "../assets/stages/stages.json";
 import MatchDialog from "./MatchDialog";
 import StageCard from "./StageCard";
-import { gameContext } from "@/context/GameContext";
+import { GameContext } from "@/context/GameContext";
 
 const GameOne: FC = ({}) => {
   const {
@@ -14,7 +14,7 @@ const GameOne: FC = ({}) => {
     setScreen,
     setPlayerOneScore,
     setPlayerTwoScore,
-  } = useContext(gameContext);
+  } = useContext(GameContext);
   const [bannedStages, setBannedStages] = useState<string[]>([]);
   const [firstPicker, setFirstPicker] = useState<string>("");
   const [secondPicker, setSecondPicker] = useState<string>("");

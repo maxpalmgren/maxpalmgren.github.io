@@ -1,9 +1,9 @@
 import { GameData } from "@/Types/GameData";
 import { createContext, PropsWithChildren, useState } from "react";
 
-export const gameContext = createContext<GameData | undefined>(undefined);
+export const GameContext = createContext<GameData>();
 
-const GameContext = ({ children }: PropsWithChildren) => {
+const GameProvider = ({ children }: PropsWithChildren) => {
   const [selectedRuleset, setSelectedruleset] = useState<string>("EU Ruleset");
   const [playerOne, setPlayerOne] = useState<string>("Player 1");
   const [playerTwo, setPlayerTwo] = useState<string>("Player 2");
@@ -16,7 +16,7 @@ const GameContext = ({ children }: PropsWithChildren) => {
   >("onBoard");
 
   return (
-    <gameContext.Provider
+    <GameContext.Provider
       value={{
         selectedRuleset,
         setSelectedruleset,
@@ -37,8 +37,8 @@ const GameContext = ({ children }: PropsWithChildren) => {
       }}
     >
       {children}
-    </gameContext.Provider>
+    </GameContext.Provider>
   );
 };
 
-export default GameContext;
+export default GameProvider;

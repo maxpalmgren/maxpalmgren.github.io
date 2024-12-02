@@ -3,7 +3,7 @@ import { FC, useContext, useEffect, useState } from "react";
 import StageData from "../assets/stages/stages.json";
 import MatchDialog from "./MatchDialog";
 import StageCard from "./StageCard";
-import { gameContext } from "@/context/GameContext";
+import { GameContext } from "@/context/GameContext";
 
 const GameLoop: FC = () => {
   const {
@@ -16,7 +16,7 @@ const GameLoop: FC = () => {
     setScreen,
     bestOfMode,
     setWinner,
-  } = useContext(gameContext);
+  } = useContext(GameContext);
   const stages = StageData as Stage[];
   const [bannedStages, setBannedStages] = useState<string[]>([]);
   const [pickedStage, setPickedStage] = useState<Stage | undefined>(undefined);

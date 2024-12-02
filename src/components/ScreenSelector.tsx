@@ -3,12 +3,13 @@ import Onboard from "../wizard/Onboard";
 import GameOne from "./GameOne";
 import GameLoop from "./GameLoop";
 import EndScreen from "./EndScreen";
-import { gameContext } from "@/context/GameContext";
+import { GameContext } from "@/context/GameContext";
 
 const rulesetList = ["EU Ruleset"];
 
 const ScreenSelector: FC = () => {
-  const { screen } = useContext(gameContext);
+  const { screen, winner, setScreen, setPlayerOneScore, setPlayerTwoScore } =
+    useContext(GameContext);
 
   if (screen === "onBoard")
     return (

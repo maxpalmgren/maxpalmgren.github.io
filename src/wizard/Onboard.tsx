@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { FC, useContext } from "react";
 import ModeDropdown from "../components/ModeDropdown";
 import RulesetDropdown from "../components/RulesetDropdown";
-import { gameContext } from "@/context/GameContext";
+import { GameContext } from "@/context/GameContext";
 
 type Props = {
   rulesetList: string[];
@@ -20,7 +20,7 @@ const Onboard: FC<Props> = ({ rulesetList }) => {
     setScreen,
     mode,
     setMode,
-  } = useContext(gameContext);
+  } = useContext(GameContext);
   const onButtonClick = () => {
     setScreen("game1");
   };
