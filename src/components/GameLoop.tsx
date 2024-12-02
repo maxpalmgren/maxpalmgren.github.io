@@ -1,32 +1,22 @@
 import { Stage } from "@/Types/Stage";
-import { FC, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import StageData from "../assets/stages/stages.json";
 import MatchDialog from "./MatchDialog";
 import StageCard from "./StageCard";
+import { gameContext } from "@/context/GameContext";
 
-type Props = {
-  playerOne: string;
-  playerTwo: string;
-  playerOneScore: number;
-  playerTwoScore: number;
-  setPlayerOneScore: (point: number) => void;
-  setPlayerTwoScore: (point: number) => void;
-  setScreen: (screen: "end") => void;
-  bestOfMode: string;
-  setWinner: (winner: string) => void;
-};
-
-const GameLoop: FC<Props> = ({
-  playerOne,
-  playerTwo,
-  playerOneScore,
-  playerTwoScore,
-  setPlayerOneScore,
-  setPlayerTwoScore,
-  setScreen,
-  bestOfMode,
-  setWinner,
-}) => {
+const GameLoop: FC = () => {
+  const {
+    playerOne,
+    playerTwo,
+    playerOneScore,
+    playerTwoScore,
+    setPlayerOneScore,
+    setPlayerTwoScore,
+    setScreen,
+    bestOfMode,
+    setWinner,
+  } = useContext(gameContext);
   const stages = StageData as Stage[];
   const [bannedStages, setBannedStages] = useState<string[]>([]);
   const [pickedStage, setPickedStage] = useState<Stage | undefined>(undefined);
@@ -73,7 +63,7 @@ const GameLoop: FC<Props> = ({
 
   const handleWin = (winner: string) => {
     if (winner === playerOne) {
-      setPlayerOneScore(++playerOneScore);
+      setPlayerOneScore(playerOneScore + 1);
       setLastWinner(playerOne);
       setLastLoser(playerTwo);
       setFlipSwitch((x) => x + 1);
@@ -96,7 +86,7 @@ const GameLoop: FC<Props> = ({
       }
     }
     if (winner === playerTwo) {
-      setPlayerTwoScore(++playerTwoScore);
+      setPlayerTwoScore(playerTwoScore + 1);
       setLastWinner(playerTwo);
       setLastLoser(playerOne);
       setFlipSwitch((x) => x + 1);

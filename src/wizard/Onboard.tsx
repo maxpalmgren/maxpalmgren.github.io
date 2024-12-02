@@ -1,34 +1,26 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { FC } from "react";
+import { FC, useContext } from "react";
 import ModeDropdown from "../components/ModeDropdown";
 import RulesetDropdown from "../components/RulesetDropdown";
+import { gameContext } from "@/context/GameContext";
 
 type Props = {
   rulesetList: string[];
-  selectedRuleset: string;
-  setSelectedruleset: () => void;
-  playerOne: string;
-  setPlayerOne: (value: string) => void;
-  playerTwo: string;
-  setPlayerTwo: (value: string) => void;
-  setScreen: (screen: "game1") => void;
-  mode: string;
-  setMode: (mode: string) => void;
 };
 
-const Onboard: FC<Props> = ({
-  selectedRuleset,
-  rulesetList,
-  setSelectedruleset,
-  playerOne,
-  playerTwo,
-  setPlayerOne,
-  setPlayerTwo,
-  setScreen,
-  mode,
-  setMode,
-}) => {
+const Onboard: FC<Props> = ({ rulesetList }) => {
+  const {
+    selectedRuleset,
+    setSelectedruleset,
+    playerOne,
+    setPlayerOne,
+    playerTwo,
+    setPlayerTwo,
+    setScreen,
+    mode,
+    setMode,
+  } = useContext(gameContext);
   const onButtonClick = () => {
     setScreen("game1");
   };

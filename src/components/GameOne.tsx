@@ -1,28 +1,20 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { Stage } from "../Types/Stage";
 import StageData from "../assets/stages/stages.json";
 import MatchDialog from "./MatchDialog";
 import StageCard from "./StageCard";
+import { gameContext } from "@/context/GameContext";
 
-type Props = {
-  playerOne: string;
-  playerTwo: string;
-  playerOneScore: number;
-  setPlayerOneScore: (point: number) => void;
-  playerTwoScore: number;
-  setPlayerTwoScore: (point: number) => void;
-  setScreen: (screen: "gameloop") => void;
-};
-
-const GameOne: FC<Props> = ({
-  playerOne,
-  playerTwo,
-  playerOneScore,
-  playerTwoScore,
-  setScreen,
-  setPlayerOneScore,
-  setPlayerTwoScore,
-}) => {
+const GameOne: FC = ({}) => {
+  const {
+    playerOne,
+    playerTwo,
+    playerOneScore,
+    playerTwoScore,
+    setScreen,
+    setPlayerOneScore,
+    setPlayerTwoScore,
+  } = useContext(gameContext);
   const [bannedStages, setBannedStages] = useState<string[]>([]);
   const [firstPicker, setFirstPicker] = useState<string>("");
   const [secondPicker, setSecondPicker] = useState<string>("");
