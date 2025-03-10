@@ -1,6 +1,7 @@
 {
   "name": "smash-stagepicker",
   "private": true,
+  "homepage": "https://maxpalmgren.github.io/smash-stagepicker/",
   "version": "20.x",
   "type": "module",
   "scripts": {
